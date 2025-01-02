@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dons de l'Action</title>
+</head>
+<body>
+<h1>Dons pour l'Action</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Titre</th>
+        <th>Montant</th>
+        <th>Type</th>
+        <th>Donateur</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Vérifie que la liste 'dons' est bien passée au modèle -->
+    <tr th:if="${dons != null}" th:each="don : ${dons}">
+        <td th:text="${don.id}"></td>
+        <td th:text="${don.titre}"></td>
+        <td th:text="${don.montant}"></td>
+        <td th:text="${don.type}"></td>
+        <!-- Vérifie si un donateur est associé au don -->
+        <td th:text="${don.donateur != null ? don.donateur.nom : 'Aucun'}"></td>
+    </tr>
+    <!-- Si la liste est vide -->
+    <tr th:if="${dons == null || dons.size() == 0}">
+        <td colspan="5">Aucun don pour cette action.</td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/actions}">Retour aux Actions</a>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Nouvelle Action</title>
+</head>
+<body>
+<h1>Créer une Nouvelle Action</h1>
+<form th:action="@{/createAction}" th:object="${action}" method="post">
+  <!-- Titre -->
+  <div>
+    <label for="titre">Titre :</label>
+    <input type="text" id="titre" th:field="*{titre}" required />
+  </div>
+  <!-- Description -->
+  <div>
+    <label for="description">Description :</label>
+    <textarea id="description" th:field="*{description}" required></textarea>
+  </div>
+  <!-- Montant -->
+  <div>
+    <label for="montant">Montant :</label>
+    <input type="number" id="montant" th:field="*{montant}" required />
+  </div>
+  <!-- Organisateur -->
+  <div>
+    <label for="organisateur">Organisateur :</label>
+    <select id="organisateur" name="organisateur-Id" required>
+      <option th:each="org : ${organisateurs}" th:value="${org.id}" th:text="${org.nom}"></option>
+    </select>
+  </div>
+  <!-- Dons -->
+  <div>
+    <label for="dons">Dons :</label>
+    <select id="dons" name="dons-Ids" multiple>
+      <option th:each="don : ${dons}" th:value="${don.id}" th:text="${don.titre}"></option>
+    </select>
+  </div>
+  <!-- Bouton de soumission -->
+  <button type="submit">Créer</button>
+</form>
+<a th:href="@{/actions}">Retour</a>
+</body>
+</html>

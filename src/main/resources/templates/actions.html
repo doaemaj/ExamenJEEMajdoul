@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Actions</title>
+</head>
+<body>
+<h1>Liste des Actions</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Titre</th>
+        <th>Description</th>
+        <th>Montant</th>
+        <th>État</th>
+        <th>Organisateur</th>
+        <th>Détails</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="action : ${actions}">
+        <td th:text="${action.id}"></td>
+        <td th:text="${action.titre}"></td>
+        <td th:text="${action.description}"></td>
+        <td th:text="${action.montant}"></td>
+        <td th:text="${action.etat}"></td>
+        <td th:text="${action.organisateur.nom}"></td>
+        <td><a th:href="@{/donAction/{id}(id=${action.id})}">Voir Dons</a></td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/newActionForm}">Créer une nouvelle action</a>
+</body>
+</html>
